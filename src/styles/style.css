@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+* { 
+    box-sizing: border-box; 
+    font-family: 'Roboto', sans-serif;
+} 
+
+.root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+}
+.gallow {
+    width: 250px;
+    height: 320px;
+}
+main {
+    flex-direction: column;
+    align-items: center;
+}
+.images {
+    width: 585px;
+    flex-direction: row;
+    position: relative;
+}
+.choose-word {
+    position: absolute;
+    top: 20px;
+    right: 0;
+
+    width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 7px;
+
+    color: white;
+    background-color: #27ae60;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.keyboard {
+    margin-top: 30px;
+    width: 600px;
+}
+.keys {
+    width: 35px;
+    height: 35px;
+    margin: 5px;
+
+    font-weight: 700;
+    color: rgb(70, 70, 70);
+    background-color: lightslategray;
+    border: none;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.guess {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+.guess p, .guess input, .guess button {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.guess input {
+    width: 300px;
+    height: 35px;
+    background-color: #fafafa;
+    border-radius: 5px;
+    border: 2px solid gray;
+    padding: 0 5px;
+}
+.guess button {
+    width: 70px;
+    height: 38px;
+    border: 1px solid rgb(86, 86, 143);
+    border-radius: 5px;
+    background-color: rgb(181, 225, 252);
+
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 14px;
+    color: rgb(54, 54, 141);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
