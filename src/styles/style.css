@@ -29,7 +29,7 @@ main {
     top: 20px;
     right: 0;
 
-    width: 150px;
+    width: 140px;
     height: 40px;
     border: none;
     border-radius: 7px;
@@ -37,6 +37,14 @@ main {
     color: white;
     background-color: #27ae60;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    font-weight: 700;
+}
+.chosen-word {
+    position: absolute;
+    bottom: 15px;
+    right: 0;
+
+    letter-spacing: 10px;
 }
 .keyboard {
     margin-top: 30px;
@@ -48,8 +56,8 @@ main {
     margin: 5px;
 
     font-weight: 700;
-    color: rgb(70, 70, 70);
-    background-color: lightslategray;
+    color: rgb(105, 105, 105);
+    background-color: rgb(142, 157, 172);
     border: none;
     border-radius: 3px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -72,19 +80,19 @@ main {
     height: 35px;
     background-color: #fafafa;
     border-radius: 5px;
-    border: 2px solid gray;
+    border: 2px solid rgb(181, 181, 181);
     padding: 0 5px;
 }
 .guess button {
     width: 70px;
     height: 38px;
-    border: 1px solid rgb(86, 86, 143);
+    border: 1px solid rgb(86, 111, 143);
     border-radius: 5px;
-    background-color: rgb(181, 225, 252);
+    background-color: rgb(209, 235, 251);
 
     font-weight: 700;
     letter-spacing: 1px;
     font-size: 14px;
-    color: rgb(54, 54, 141);
+    color: rgb(86, 111, 143);
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
