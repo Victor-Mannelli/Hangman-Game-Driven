@@ -3,7 +3,9 @@
     box-sizing: border-box; 
     font-family: 'Roboto', sans-serif;
 } 
-
+button {
+    cursor: pointer;
+}
 .root {
     display: flex;
     justify-content: center;
@@ -95,4 +97,12 @@ main {
     font-size: 14px;
     color: rgb(86, 111, 143);
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.unclickable {
+    pointer-events: none; 
+}
+.game-started {
+    background-color: rgb(209, 235, 251);
+    color: rgb(86, 111, 143);
 }
