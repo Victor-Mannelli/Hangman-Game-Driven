@@ -1,9 +1,8 @@
-import React, { useState } from "react"
+import { useState, useEffect} from "react"
 import styled from "styled-components"
 
 import letters from "./keys"
 import words from "./palavras"
-
 
 import gallow0 from "./images/gallow0.png"
 import gallow1 from "./images/gallow1.png"
@@ -16,12 +15,13 @@ const gallows = [gallow0, gallow1, gallow2, gallow3, gallow4, gallow5, gallow6]
 
 export default function App() {
 
-    const [word, setWord] = useState("")
-    const [gameStarted, setGameStarted] = useState(false)
-    const [randomWordArray, setRandomWordArray] = useState("")
-    const [clickedKeys, setClickedKeys] = useState([])
-    const [textInput, setTextInput] = useState("")
-    const [counter, setCounter] = useState(0)
+    const [word, setWord] = useState("");
+    const [gameSet, setGameSet] = useState(false);
+    const [randomWordArray, setRandomWordArray] = useState("");
+    const [clickedKeys, setClickedKeys] = useState([]);
+    const [textInput, setTextInput] = useState("");
+    const [counter, setCounter] = useState(0);
+    const [wordClass, setWordClass] = useState("chosen-word")
 
     function selectingWord() {
         const randomWord = words[Math.floor(Math.random() * words.length)];
@@ -30,9 +30,12 @@ export default function App() {
         const underlines = ("_".repeat([...randomWord].length))
         setWord([...underlines])
 
-        setGameStarted(true)
+        setGameSet(true)
+        setCounter(0)
+        setWordClass("chosen-word")
+        setTextInput("")
+        setClickedKeys([])
     }
-    console.log(randomWordArray)
     function letterCheckMouse(l) {
         setClickedKeys([...clickedKeys, l])
 
@@ -50,19 +53,40 @@ export default function App() {
                 word[index] = randomWordArray[index]
             } 
         });
-        if(!answerArray.includes(l)){
+        if (!answerArray.includes(l)){
             setCounter(counter + 1)
         } 
-    
         let newarray = word
         setWord(newarray)
     }
+
+    useEffect(() => {
+        if (!word.includes("_") && counter < word.length){
+
+            setWordClass("won")
+            setGameSet(false)
+            setWord(randomWordArray)
+            return
+        }
+
+        if (counter === 6){
+            setWordClass("lost")
+            setGameSet(false)
+            setWord(randomWordArray)
+        }
+    }, [counter])
+
     function guessing() {
 
         const answer = randomWordArray.join("")
-        textInput === answer ? alert('you win') : alert('you lose')
-
-        setTextInput("")
+        if  (textInput === answer){
+            setWordClass("won") 
+            setGameSet(false)
+            setWord(randomWordArray)
+        }  else {
+            setCounter(6)
+        }
+    
     }
 
     return (
@@ -70,14 +94,14 @@ export default function App() {
             <div className="images">
                 <img className="gallow" src={gallows[counter]} alt="" />
                 <button onClick={selectingWord} className="choose-word"> Escolher Palavra </button>
-                <h1 className="chosen-word">{word}</h1>
+                <h1 className={wordClass}>{word}</h1>
             </div>
             <div className="keyboard">
                 {letters.map((l, index) =>
                     <button
                         onClick={() => letterCheckMouse(l)}
                         key={index}
-                        className={gameStarted === true ? clickedKeys.includes(l) ? "keys unclickable" : "keys game-started" : "keys unclickable"}
+                        className={gameSet === true ? clickedKeys.includes(l) ? "keys unclickable" : "keys game-started" : "keys unclickable"}
                     >
                         {l.toUpperCase()}
                     </button>)}
@@ -87,8 +111,12 @@ export default function App() {
                 <input
                     onChange={(event) => setTextInput(event.target.value)}
                     value={textInput}
+                    disabled = {gameSet === true ? false : true}
                 />
-                <button onClick={guessing}> Chutar </button>
+                <button 
+                    onClick={guessing}
+                    disabled = {gameSet === true ? false : true}
+                > Chutar </button>
             </div>
         </Main>
     )

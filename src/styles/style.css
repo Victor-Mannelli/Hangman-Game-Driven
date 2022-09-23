@@ -17,10 +17,6 @@ button {
     width: 250px;
     height: 320px;
 }
-/* main {
-    flex-direction: column;
-    align-items: center;
-} */
 .images {
     width: 585px;
     flex-direction: row;
@@ -46,6 +42,7 @@ button {
     bottom: 15px;
     right: 0;
 
+    font-size: 20px;
     letter-spacing: 10px;
 }
 .keyboard {
@@ -106,4 +103,20 @@ button {
 .game-started {
     background-color: rgb(209, 235, 251);
     color: rgb(86, 111, 143);
+}
+.won {
+    position: absolute;
+    bottom: 15px;
+    right: 0;
+
+    color: greenyellow;
+    font-size: 20px;
+}
+.lost {
+    position: absolute;
+    bottom: 15px;
+    right: 0;
+
+    color: red;
+    font-size: 20px;
 }
