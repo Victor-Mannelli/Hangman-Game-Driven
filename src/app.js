@@ -37,10 +37,19 @@ export default function App() {
     function letterCheckMouse(l) {
         setClickedKeys([...clickedKeys, l])
 
-        randomWordArray.forEach((e, index) => {
-            if(e === l){
-                word[index] = l
-            } 
+        let answer = randomWordArray.join("")
+        answer = answer.replace(new RegExp(/[àáâãäå]/g),"a");
+        answer = answer.replace(new RegExp(/[èéêë]/g),"e");
+        answer = answer.replace(new RegExp(/[ìíîï]/g),"i");
+        answer = answer.replace(new RegExp(/[òóôõö]/g),"o");
+        answer = answer.replace(new RegExp(/[ùúûü]/g),"u");
+        answer = answer.replace(new RegExp(/[ç]/g),"c");
+        let answerArray = [...answer]
+
+        answerArray.forEach((e, index) => {
+            if (e === l) {
+                word[index] = randomWordArray[index]
+            }
         });
         newarray = word
         setWord(newarray)
