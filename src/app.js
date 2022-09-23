@@ -12,6 +12,7 @@ import gallow3 from "./images/gallow3.png"
 import gallow4 from "./images/gallow4.png"
 import gallow5 from "./images/gallow5.png"
 import gallow6 from "./images/gallow6.png"
+const gallows = [gallow0, gallow1, gallow2, gallow3, gallow4, gallow5, gallow6]
 
 export default function App() {
 
@@ -20,8 +21,7 @@ export default function App() {
     const [randomWordArray, setRandomWordArray] = useState("")
     const [clickedKeys, setClickedKeys] = useState([])
     const [textInput, setTextInput] = useState("")
-    const [counter, setCounter] = useState(1)
-    const [gallowImage, setGallowImage] = useState(gallow0)
+    const [counter, setCounter] = useState(0)
 
     function selectingWord() {
         const randomWord = words[Math.floor(Math.random() * words.length)];
@@ -52,9 +52,6 @@ export default function App() {
         });
         if(!answerArray.includes(l)){
             setCounter(counter + 1)
-            gallowChanges()
-            console.log('errou')
-            console.log(counter)
         } 
     
         let newarray = word
@@ -67,37 +64,11 @@ export default function App() {
 
         setTextInput("")
     }
-    function gallowChanges(){
-        switch (counter) {
-            case 1:
-                setGallowImage(gallow1)
-                break;
-            case 2:
-                setGallowImage(gallow2)
-                break;
-            case 3:
-                setGallowImage(gallow3)
-                break;
-            case 4:
-                setGallowImage(gallow4)
-                break;
-            case 5:
-                setGallowImage(gallow5)
-                break;
-            case 6:
-                setGallowImage(gallow6)
-                break;
-            default:
-                setGallowImage(gallowImage)
-                break;
-        }
-
-    }
 
     return (
         <Main>
             <div className="images">
-                <img className="gallow" src={gallowImage} alt="" />
+                <img className="gallow" src={gallows[counter]} alt="" />
                 <button onClick={selectingWord} className="choose-word"> Escolher Palavra </button>
                 <h1 className="chosen-word">{word}</h1>
             </div>
