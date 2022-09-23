@@ -17,10 +17,10 @@ button {
     width: 250px;
     height: 320px;
 }
-main {
+/* main {
     flex-direction: column;
     align-items: center;
-}
+} */
 .images {
     width: 585px;
     flex-direction: row;
@@ -84,6 +84,7 @@ main {
     border-radius: 5px;
     border: 2px solid rgb(181, 181, 181);
     padding: 0 5px;
+    outline-color: rgb(120, 120, 120);
 }
 .guess button {
     width: 70px;
