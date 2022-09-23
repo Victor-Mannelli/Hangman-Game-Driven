@@ -19,7 +19,7 @@ export default function App() {
     const [gameStarted, setGameStarted] = useState(false)
     const [randomWordArray, setRandomWordArray] = useState("")
     const [clickedKeys, setClickedKeys] = useState([])
-    // let newarray = []
+    let newarray = []
 
     const [textInput, setTextInput] = useState("")
 
@@ -32,14 +32,18 @@ export default function App() {
 
         setGameStarted(true)
     }
+    console.log(randomWordArray)
 
     function letterCheckMouse(l) {
         setClickedKeys([...clickedKeys, l])
 
-        // randomWordArray.forEach((e) => {
-        //     (e === l && !clickedKeys.contains(l)) ? : ;
-        // });
-        // setWord(newarray)
+        randomWordArray.forEach((e, index) => {
+            if(e === l){
+                word[index] = l
+            } 
+        });
+        newarray = word
+        setWord(newarray)
     }
     function guessing() {
 
