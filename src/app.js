@@ -62,7 +62,6 @@ export default function App() {
     }
 
     useEffect(() => {
-        console.log(randomWordArray)
         if (!word.includes("_")){
             setWordClass("won")
             setGameSet(false)
