@@ -1,53 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
-* { 
-    box-sizing: border-box; 
-    font-family: 'Roboto', sans-serif;
-} 
-button {
-    cursor: pointer;
-}
-.root {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    height: 100vh;
-}
-.gallow {
-    width: 250px;
-    height: 320px;
-}
-.images {
-    width: 585px;
-    flex-direction: row;
-    position: relative;
-}
-.choose-word {
-    position: absolute;
-    top: 20px;
-    right: 0;
-
-    width: 140px;
-    height: 40px;
-    border: none;
-    border-radius: 7px;
-
-    color: white;
-    background-color: #27ae60;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    font-weight: 700;
-}
 .chosen-word {
     position: absolute;
     bottom: 15px;
     right: 0;
 
-    font-size: 20px;
+    font-size: 30px;
     letter-spacing: 10px;
-}
-.keyboard {
-    margin-top: 30px;
-    width: 600px;
 }
 .keys {
     width: 35px;
@@ -61,42 +20,6 @@ button {
     border-radius: 3px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
-.guess {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-top: 15px;
-}
-.guess p, .guess input, .guess button {
-    margin: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.guess input {
-    width: 300px;
-    height: 35px;
-    background-color: #fafafa;
-    border-radius: 5px;
-    border: 2px solid rgb(181, 181, 181);
-    padding: 0 5px;
-    outline-color: rgb(120, 120, 120);
-}
-.guess button {
-    width: 70px;
-    height: 38px;
-    border: 1px solid rgb(86, 111, 143);
-    border-radius: 5px;
-    background-color: rgb(209, 235, 251);
-
-    font-weight: 700;
-    letter-spacing: 1px;
-    font-size: 14px;
-    color: rgb(86, 111, 143);
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-}
-
 .unclickable {
     pointer-events: none; 
 }
@@ -110,7 +33,7 @@ button {
     right: 0;
 
     color: greenyellow;
-    font-size: 20px;
+    font-size: 30px;
 }
 .lost {
     position: absolute;
@@ -118,5 +41,5 @@ button {
     right: 0;
 
     color: red;
-    font-size: 20px;
+    font-size: 30px;
 }
