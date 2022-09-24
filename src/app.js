@@ -22,7 +22,7 @@ export default function App() {
     const [clickedKeys, setClickedKeys] = useState([]);
     const [textInput, setTextInput] = useState("");
     const [counter, setCounter] = useState(0);
-    const [wordClass, setWordClass] = useState("chosen-word")
+    const [wordState, setWordState] = useState("game-in-progress")
 
     function selectingWord() {
         const randomWord = words[Math.floor(Math.random() * words.length)];
@@ -33,7 +33,7 @@ export default function App() {
 
         setGameSet(true)
         setCounter(0)
-        setWordClass("chosen-word")
+        setWordState("game-in-progress")
         setTextInput("")
         setClickedKeys([])
     }
@@ -63,24 +63,23 @@ export default function App() {
 
     useEffect(() => {
         if (!word.includes("_")){
-            setWordClass("won")
+            setWordState("won")
             setGameSet(false)
             setWord(randomWordArray)
             return
         }
 
         if (counter === 6){
-            setWordClass("lost")
+            setWordState("lost")
             setGameSet(false)
             setWord(randomWordArray)
         }
     }, [clickedKeys, counter])
-
+    console.log(randomWordArray)
     function guessing() {
-
         const answer = randomWordArray.join("")
         if  (textInput === answer){
-            setWordClass("won") 
+            setWordState("won") 
             setGameSet(false)
             setWord(randomWordArray)
         }  else {
@@ -93,14 +92,14 @@ export default function App() {
             <Images>
                 <Gallow src={gallows[counter]} alt=""/>
                 <ChooseWord onClick={selectingWord}> Escolher Palavra </ChooseWord>
-                <h1 className={wordClass}>{word}</h1>
+                <WordGuessed youWin={wordState}>{word}</WordGuessed>
             </Images>
             <Keyboard>
                 {letters.map((l, index) =>
                     <button
                         onClick={() => letterCheckMouse(l)}
                         key={index}
-                        className={gameSet === true ? (clickedKeys.includes(l) ? "keys unclickable" : "keys game-started") : "keys unclickable"}
+                        className={gameSet ? (clickedKeys.includes(l) ? "keys unclickable" : "keys game-started") : "keys unclickable"}
                     > {l.toUpperCase()} </button>)}
             </Keyboard>
             <Guess>
@@ -108,17 +107,51 @@ export default function App() {
                 <input
                     onChange={(event) => setTextInput(event.target.value)}
                     value={textInput}
-                    disabled = {gameSet === true ? false : true}
+                    disabled = {gameSet}
                 />
                 <button 
                     onClick={guessing}
-                    disabled = {gameSet === true ? false : true}
+                    disabled = {gameSet}
                 > Chutar </button>
             </Guess>
             <GlobalStyle />
         </Main>
     )
 }
+const WordGuessed = styled.h1 `
+
+    position: absolute;
+    bottom: 15px;
+    right: 0;
+    
+    letter-spacing: 10px;
+    font-size: 30px;
+
+    color: ${props => props.youWin === "game-in-progress" ? "black" : props.youWin === "won" ? "green" : "red" }
+`
+
+// const Keys = styled.button`
+
+//     width: 35px;
+//     height: 35px;
+//     margin: 5px;
+
+//     font-weight: 700;
+//     color: rgb(105, 105, 105);
+//     background-color: rgb(142, 157, 172);
+//     border: none;
+//     border-radius: 3px;
+//     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+//     .unclickable {
+//         pointer-events: none; 
+//     }
+
+//     .game-started {
+//         background-color: rgb(209, 235, 251);
+//         color: rgb(86, 111, 143);
+//     }
+// `
 
 const Main = styled.main `
     display: flex;
