@@ -107,11 +107,13 @@ export default function App() {
                 <input
                     onChange={(event) => setTextInput(event.target.value)}
                     value={textInput}
-                    disabled = {gameSet}
+                    disabled = {!gameSet}
+                    tabIndex={0}
+                    onKeyDown = {selector => selector.key === "Enter" ? guessing() : ""}
                 />
                 <button 
-                    onClick={guessing}
-                    disabled = {gameSet}
+                    onClick = {guessing}
+                    disabled = {!gameSet} 
                 > Chutar </button>
             </Guess>
             <GlobalStyle />
@@ -124,10 +126,10 @@ const WordGuessed = styled.h1 `
     bottom: 15px;
     right: 0;
     
-    letter-spacing: 10px;
+    letter-spacing: ${props => props.youWin === "game-in-progress" ? "10px" : "0px"};
     font-size: 30px;
 
-    color: ${props => props.youWin === "game-in-progress" ? "black" : props.youWin === "won" ? "green" : "red" }
+    color: ${props => props.youWin === "game-in-progress" ? "black" : props.youWin === "won" ? "#27ae60" : "red" }
 `
 
 // const Keys = styled.button`
