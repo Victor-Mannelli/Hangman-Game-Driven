@@ -90,9 +90,9 @@ export default function App() {
     return (
         <Main>
             <Images>
-                <Gallow src={gallows[counter]} alt=""/>
-                <ChooseWord onClick={selectingWord}> Escolher Palavra </ChooseWord>
-                <WordGuessed youWin={wordState}>{word}</WordGuessed>
+                <Gallow src={gallows[counter]} data-identifier="game-image" alt=""/>
+                <ChooseWord onClick={selectingWord} data-identifier="choose-word"> Escolher Palavra </ChooseWord>
+                <WordGuessed data-identifier="word" youWin={wordState}> {word} </WordGuessed>
             </Images>
             <Keyboard>
                 {letters.map((l, index) =>
@@ -101,6 +101,7 @@ export default function App() {
                         key = {index}
                         gameStatus = {gameSet}
                         clickedKeysList = {clickedKeys.includes(l)}
+                        data-identifier="letter"
                     > {l.toUpperCase()} </Keys>)}
             </Keyboard>
             <Guess>
@@ -111,10 +112,12 @@ export default function App() {
                     disabled = {!gameSet}
                     tabIndex = {0}
                     onKeyDown = {selector => selector.key === "Enter" ? guessing() : ""}
+                    data-identifier="type-guess"
                 />
                 <button 
                     onClick = {guessing}
                     disabled = {!gameSet} 
+                    data-identifier="guess-button"
                 > Chutar </button>
             </Guess>
             <GlobalStyle />
