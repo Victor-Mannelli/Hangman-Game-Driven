@@ -96,19 +96,20 @@ export default function App() {
             </Images>
             <Keyboard>
                 {letters.map((l, index) =>
-                    <button
-                        onClick={() => letterCheckMouse(l)}
-                        key={index}
-                        className={gameSet ? (clickedKeys.includes(l) ? "keys unclickable" : "keys game-started") : "keys unclickable"}
-                    > {l.toUpperCase()} </button>)}
+                    <Keys
+                        onClick = {() => letterCheckMouse(l)}
+                        key = {index}
+                        gameStatus = {gameSet}
+                        clickedKeysList = {clickedKeys.includes(l)}
+                    > {l.toUpperCase()} </Keys>)}
             </Keyboard>
             <Guess>
                 <p> Já sei a palavra! </p>
                 <input
-                    onChange={(event) => setTextInput(event.target.value)}
-                    value={textInput}
+                    onChange = {(event) => setTextInput(event.target.value)}
+                    value = {textInput}
                     disabled = {!gameSet}
-                    tabIndex={0}
+                    tabIndex = {0}
                     onKeyDown = {selector => selector.key === "Enter" ? guessing() : ""}
                 />
                 <button 
@@ -131,30 +132,21 @@ const WordGuessed = styled.h1 `
 
     color: ${props => props.youWin === "game-in-progress" ? "black" : props.youWin === "won" ? "#27ae60" : "red" }
 `
+const Keys = styled.button `
 
-// const Keys = styled.button`
+    width: 35px;
+    height: 35px;
+    margin: 5px;
 
-//     width: 35px;
-//     height: 35px;
-//     margin: 5px;
+    font-weight: 700;
+    color: ${props => props.clickedKeysList ? "#696969" : props.gameStatus ? "#566f8f" : "#696969"}; 
+    background-color: ${props => props.clickedKeysList ? "#8e9dac" : props.gameStatus ? "#d1ebfb" : "#8e9dac"};
+    border: none;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
-//     font-weight: 700;
-//     color: rgb(105, 105, 105);
-//     background-color: rgb(142, 157, 172);
-//     border: none;
-//     border-radius: 3px;
-//     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-
-//     .unclickable {
-//         pointer-events: none; 
-//     }
-
-//     .game-started {
-//         background-color: rgb(209, 235, 251);
-//         color: rgb(86, 111, 143);
-//     }
-// `
-
+    pointer-events: ${props => props.clickedKeysList ? "none" : "initial"};
+`
 const Main = styled.main `
     display: flex;
     justify-content: center;
