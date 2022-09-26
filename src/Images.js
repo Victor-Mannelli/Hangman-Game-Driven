@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
-export default function Images({counter, gallows, selectingWord, word, wordState}){
+export default function Images({counter, gallows, selectingWord, word, wordState, choseWord}){
+
     return (
         <StyledImages>
             <StyledGallow src={gallows[counter]} data-identifier="game-image" alt=""/>
-            <StyledChooseWord onClick={selectingWord} data-identifier="choose-word"> Escolher Palavra </StyledChooseWord>
-            <StyledWordGuessed youWin={wordState}> {word} </StyledWordGuessed>
+            <StyledChooseWord onClick={selectingWord} data-identifier="choose-word"> {choseWord} </StyledChooseWord>
+            <StyledWordGuessed youWin={wordState} data-identifier="word"> {word} </StyledWordGuessed>
         </StyledImages>
     )
 }

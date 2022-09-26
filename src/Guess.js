@@ -3,7 +3,7 @@ import styled from "styled-components"
 export function Guess({gameSet, guessing, textInput, setTextInput}){
 
     return (
-        <StyledGuess gameset = {!gameSet}>
+        <StyledGuess gameSet = {!gameSet}>
             <p> Já sei a palavra! </p>
             <input
                 onChange = {(event) => setTextInput(event.target.value)}
@@ -48,7 +48,7 @@ const StyledGuess = styled.div `
         height: 38px;
         border: 1px solid rgb(86, 111, 143);
         border-radius: 5px;
-        background-color: ${props => props.gameset ? "#8e9dac" : "#d1ebfb"};
+        background-color: ${props => props.gameSet ? "#8e9dac" : "#d1ebfb"};
 
         font-weight: 700;
         letter-spacing: 1px;

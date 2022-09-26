@@ -27,7 +27,8 @@ export default function App() {
     const [clickedKeys, setClickedKeys] = useState([]);
     const [textInput, setTextInput] = useState("");
     const [counter, setCounter] = useState(0);
-    const [wordState, setWordState] = useState("game-in-progress")
+    const [wordState, setWordState] = useState("game-in-progress");
+    const [choseWord, setChoseWord] = useState("Começar");
 
     function selectingWord() {
         const randomWord = words[Math.floor(Math.random() * words.length)];
@@ -41,7 +42,9 @@ export default function App() {
         setWordState("game-in-progress")
         setTextInput("")
         setClickedKeys([])
+        setChoseWord("Recomeçar")
     }
+
     function letterCheckMouse(l) {
         setClickedKeys([...clickedKeys, l])
     
@@ -65,12 +68,13 @@ export default function App() {
         let newarray = [...word]
         setWord(newarray)
     }
-    
+        
     useEffect(() => {
         if (!word.includes("_")){
             setWordState("won")
             setGameSet(false)
             setWord(randomWordArray)
+            setChoseWord("Começar")
             return
         }
 
@@ -78,6 +82,7 @@ export default function App() {
             setWordState("lost")
             setGameSet(false)
             setWord(randomWordArray)
+            setChoseWord("Começar")
         }
     }, [clickedKeys, counter])
     
@@ -94,7 +99,7 @@ export default function App() {
 
     return (
         <Main>
-            <Images counter={counter} gallows={gallows} selectingWord={selectingWord} word={word} wordState={wordState}/>
+            <Images counter={counter} gallows={gallows} selectingWord={selectingWord} word={word} wordState={wordState} choseWord={choseWord}/>
             <Keyboard letterCheckMouse={letterCheckMouse} clickedKeys={clickedKeys} letters={letters} gameSet={gameSet}/>
             <Guess gameSet={gameSet} guessing={guessing} textInput={textInput} setTextInput={setTextInput} />
             <GlobalStyle />
