@@ -66,10 +66,6 @@ const StyledGuess = styled.div `
 
     @media (max-width: 520px){
         flex-direction: column;
-        margin-bottom: 50px;
-    }
-    @media(max-width: 361px){
-        width: 22.0px;
-        height: 22.0px;
+        margin-bottom: 20px;
     }
 `
