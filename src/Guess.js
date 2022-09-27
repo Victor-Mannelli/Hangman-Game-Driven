@@ -1,11 +1,13 @@
 import styled from "styled-components"
 
-export function Guess({gameSet, guessing, textInput, setTextInput}){
+export function Guess({gameSet, guessing, textInput, setTextInput, setFocus}){
 
     return (
         <StyledGuess gameSet = {!gameSet}>
             <p> Já sei a palavra! </p>
             <input
+                onFocus={() => setFocus(true) }
+                onBlur={() => setFocus(false)}
                 onChange = {(event) => setTextInput(event.target.value)}
                 value = {textInput}
                 disabled = {!gameSet}
@@ -34,6 +36,11 @@ const StyledGuess = styled.div `
         justify-content: center;
         align-items: center;
     }
+    p {
+        @media (max-width: 520px){
+            padding-top: 15px;
+        }
+    }
     input {
         width: 300px;
         height: 35px;
@@ -55,5 +62,9 @@ const StyledGuess = styled.div `
         font-size: 14px;
         color: rgb(86, 111, 143);
         box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    }
+
+    @media (max-width: 520px){
+        flex-direction: column;
     }
 `

@@ -29,6 +29,7 @@ export default function App() {
     const [counter, setCounter] = useState(0);
     const [wordState, setWordState] = useState("game-in-progress");
     const [choseWord, setChoseWord] = useState("Começar");
+    const [focus, setFocus] = useState(false)
 
     function selectingWord() {
         const randomWord = words[Math.floor(Math.random() * words.length)];
@@ -45,6 +46,7 @@ export default function App() {
         setChoseWord("Recomeçar")
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     function letterCheckMouse(l) {
         setClickedKeys([...clickedKeys, l])
     
@@ -68,9 +70,23 @@ export default function App() {
         let newarray = [...word]
         setWord(newarray)
     }
-        
+    console.log(randomWordArray)
+    
     useEffect(() => {
-        if (!word.includes("_")){
+        function handleClick(letter) {
+            if(clickedKeys.includes(letter.key) || randomWordArray.length === 0 || counter >= 6 || !word.includes("_") || focus === true) return 
+            letterCheckMouse(letter.key)
+        }
+        window.addEventListener("keypress", handleClick);
+
+        return () => {
+            window.removeEventListener("keypress", handleClick);
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [clickedKeys, letterCheckMouse, randomWordArray.length]);
+
+    useEffect(() => {
+        if (!word.includes("_") && counter !== 6){
             setWordState("won")
             setGameSet(false)
             setWord(randomWordArray)
@@ -84,8 +100,8 @@ export default function App() {
             setWord(randomWordArray)
             setChoseWord("Começar")
         }
-    }, [clickedKeys, counter])
-    
+    }, [clickedKeys, counter, randomWordArray, word])
+
     function guessing() {
         const answer = randomWordArray.join("")
         if  (textInput === answer){
@@ -100,8 +116,8 @@ export default function App() {
     return (
         <Main>
             <Images counter={counter} gallows={gallows} selectingWord={selectingWord} word={word} wordState={wordState} choseWord={choseWord}/>
-            <Keyboard letterCheckMouse={letterCheckMouse} clickedKeys={clickedKeys} letters={letters} gameSet={gameSet}/>
-            <Guess gameSet={gameSet} guessing={guessing} textInput={textInput} setTextInput={setTextInput} />
+            <Keyboard letterCheckMouse={letterCheckMouse} clickedKeys={clickedKeys} letters={letters} gameSet={gameSet} counter={counter}/>
+            <Guess gameSet={gameSet} guessing={guessing} textInput={textInput} setTextInput={setTextInput} setFocus={setFocus}/>
             <GlobalStyle />
         </Main>
     )
@@ -109,9 +125,12 @@ export default function App() {
 
 const Main = styled.main `
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-
     height: 100vh;
+    
+    @media(max-width: 520px) {
+        height: 100%;
+    }
 `
