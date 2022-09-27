@@ -28,7 +28,7 @@ export default function App() {
     const [textInput, setTextInput] = useState("");
     const [counter, setCounter] = useState(0);
     const [wordState, setWordState] = useState("game-in-progress");
-    const [choseWord, setChoseWord] = useState("Começar");
+    const [choseWord, setChoseWord] = useState("Jogar");
     const [focus, setFocus] = useState(false)
 
     function selectingWord() {
@@ -89,7 +89,7 @@ export default function App() {
             setWordState("won")
             setGameSet(false)
             setWord(randomWordArray)
-            setChoseWord("Começar")
+            setChoseWord("Jogar")
             return
         }
 
@@ -97,7 +97,7 @@ export default function App() {
             setWordState("lost")
             setGameSet(false)
             setWord(randomWordArray)
-            setChoseWord("Começar")
+            setChoseWord("Jogar")
         }
     }, [clickedKeys, counter, randomWordArray, word])
 
