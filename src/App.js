@@ -70,7 +70,6 @@ export default function App() {
         let newarray = [...word]
         setWord(newarray)
     }
-    console.log(randomWordArray)
     
     useEffect(() => {
         function handleClick(letter) {
