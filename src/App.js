@@ -101,9 +101,10 @@ export default function App() {
         }
     }, [clickedKeys, counter, randomWordArray, word])
 
+    console.log(randomWordArray)
     function guessing() {
         const answer = randomWordArray.join("")
-        if  (textInput === answer){
+        if  (textInput.toLowerCase() === answer){
             setWordState("won") 
             setGameSet(false)
             setWord(randomWordArray)
