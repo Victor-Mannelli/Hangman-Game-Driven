@@ -4,7 +4,7 @@ export function Guess({gameSet, guessing, textInput, setTextInput, setFocus}){
 
     return (
         <StyledGuess gameSet = {!gameSet}>
-            <p> Já sei a palavra! </p>
+            <p> I know the word! </p>
             <input
                 onFocus={() => setFocus(true) }
                 onBlur={() => setFocus(false)}
@@ -19,7 +19,7 @@ export function Guess({gameSet, guessing, textInput, setTextInput, setFocus}){
                 onClick = {guessing}
                 disabled = {!gameSet} 
                 data-identifier="guess-button"
-            > Chutar </button>
+            > Guess </button>
         </StyledGuess>
     )
 }

@@ -28,7 +28,7 @@ export default function App() {
     const [textInput, setTextInput] = useState("");
     const [counter, setCounter] = useState(0);
     const [wordState, setWordState] = useState("game-in-progress");
-    const [choseWord, setChoseWord] = useState("Jogar");
+    const [choseWord, setChoseWord] = useState("Play");
     const [focus, setFocus] = useState(false)
 
     function selectingWord() {
@@ -43,7 +43,7 @@ export default function App() {
         setWordState("game-in-progress")
         setTextInput("")
         setClickedKeys([])
-        setChoseWord("Recomeçar")
+        setChoseWord("Restart")
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -89,7 +89,7 @@ export default function App() {
             setWordState("won")
             setGameSet(false)
             setWord(randomWordArray)
-            setChoseWord("Jogar")
+            setChoseWord("Play")
             return
         }
 
@@ -97,7 +97,7 @@ export default function App() {
             setWordState("lost")
             setGameSet(false)
             setWord(randomWordArray)
-            setChoseWord("Jogar")
+            setChoseWord("Play")
         }
     }, [clickedKeys, counter, randomWordArray, word])
 
