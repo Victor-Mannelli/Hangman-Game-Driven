@@ -3,8 +3,8 @@ import styled from "styled-components"
 import GlobalStyle from "./GlobalStyles"
 
 import letters from "./Letters"
-import words from "./Words"
-// import EnWords from "./EnWords"
+import words from "./EnWords.js"
+//"./Words"
 
 import { Guess } from "./Guess"
 import Keyboard from "./Keyboard"
@@ -101,7 +101,6 @@ export default function App() {
         }
     }, [clickedKeys, counter, randomWordArray, word])
 
-    console.log(randomWordArray)
     function guessing() {
         const answer = randomWordArray.join("")
         if  (textInput.toLowerCase() === answer){
